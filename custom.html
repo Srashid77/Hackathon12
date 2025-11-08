@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoTrace Enterprise - Custom Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 30px;
+            font-size: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+        }
+
+        .back-button::before {
+            content: "←";
+            margin-right: 8px;
+            font-size: 20px;
+        }
+
+        .hero-section {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 50px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .enterprise-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 25px;
+        }
+
+        .hero-section h1 {
+            font-size: 52px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-section .subtitle {
+            font-size: 24px;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: #666;
+            margin-top: 8px;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .features-section {
+            background: white;
+            border-radius: 20px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .features-section h2 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .feature-category {
+            margin-bottom: 35px;
+        }
+
+        .feature-category h3 {
+            font-size: 20px;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-category h3::before {
+            content: "⚡";
+            margin-right: 10px;
+            font-size: 24px;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 12px 0;
+            color: #555;
+            font-size: 16px;
+            display: flex;
+            align-items: flex-start;
+            line-height: 1.6;
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            color: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-weight: bold;
+            font-size: 12px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .contact-section {
+            background: white;
+            border-radius: 20px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-section h2 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .contact-section .intro-text {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .input-group input,
+        .input-group select,
+        .input-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus,
+        .input-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .input-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .checkbox-group {
+            margin: 25px 0;
+        }
+
+        .checkbox-group label {
+            font-size: 14px;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .checkbox-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            font-weight: 400;
+            color: #555;
+            cursor: pointer;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .contact-info {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 25px;
+        }
+
+        .contact-info h3 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            color: #666;
+            font-size: 15px;
+        }
+
+        .contact-detail::before {
+            margin-right: 12px;
+            font-size: 20px;
+        }
+
+        .contact-detail.email::before {
+            content: "📧";
+        }
+
+        .contact-detail.phone::before {
+            content: "📱";
+        }
+
+        .contact-detail.time::before {
+            content: "🕐";
+        }
+
+        .testimonial {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .testimonial-text {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .testimonial-position {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 968px) {
+            .hero-section {
+                padding: 40px 30px;
+            }
+
+            .hero-section h1 {
+                font-size: 36px;
+            }
+
+            .hero-section .subtitle {
+                font-size: 18px;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .features-section,
+            .contact-section {
+                padding: 40px 30px;
+            }
+
+            .input-row,
+            .checkbox-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="planning.html" class="back-button">Back to Pricing</a>
+
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="enterprise-badge">Enterprise Solution</div>
+            <h1>Custom Built for Your Business</h1>
+            <p class="subtitle">
+                Unlock the full power of AI-driven sentiment analysis with tailored solutions, 
+                dedicated support, and unlimited scalability.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Unlimited Reviews</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Dedicated Support</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Custom Training</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="main-content">
+            <!-- Features Section -->
+            <div class="features-section">
+                <h2>Enterprise Features</h2>
+
+                <div class="feature-category">
+                    <h3>Advanced Analytics</h3>
+                    <ul class="feature-list">
+                        <li>Unlimited review analysis across all platforms</li>
+                        <li>Custom AI model training for your industry</li>
+                        <li>Advanced Banglish NLP with continuous learning</li>
+                        <li>Predictive trend analysis and forecasting</li>
+                        <li>Competitor sentiment comparison</li>
+                    </ul>
+                </div>
+
+                <div class="feature-category">
+                    <h3>Integration & Automation</h3>
+                    <ul class="feature-list">
+                        <li>Full API access for custom integrations</li>
+                        <li>Automated response suggestions</li>
+                        <li>CRM and helpdesk integration</li>
+                        <li>White-label dashboard options</li>
+                        <li>Custom webhook configurations</li>
+                    </ul>
+                </div>
+
+                <div class="feature-category">
+                    <h3>Team & Support</h3>
+                    <ul class="feature-list">
+                        <li>Unlimited user accounts with role management</li>
+                        <li>Dedicated account manager</li>
+                        <li>24/7 priority support via phone, email & chat</li>
+                        <li>Quarterly business review meetings</li>
+                        <li>Custom training sessions for your team</li>
+                    </ul>
+                </div>
+
+                <div class="feature-category">
+                    <h3>Security & Compliance</h3>
+                    <ul class="feature-list">
+                        <li>Enterprise-grade data encryption</li>
+                        <li>Custom data retention policies</li>
+                        <li>GDPR and local compliance support</li>
+                        <li>Single Sign-On (SSO) integration</li>
+                        <li>SLA guarantees with 99.9% uptime</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Contact Form Section -->
+            <div class="contact-section">
+                <h2>Request a Consultation</h2>
+                <p class="intro-text">
+                    Our enterprise team will work with you to understand your unique needs 
+                    and create a custom solution that scales with your business.
+                </p>
+
+                <div class="input-group">
+                    <label>Company Name *</label>
+                    <input type="text" id="companyName" placeholder="Your company name" required>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>First Name *</label>
+                        <input type="text" id="firstName" placeholder="John" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Last Name *</label>
+                        <input type="text" id="lastName" placeholder="Doe" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Work Email *</label>
+                    <input type="email" id="email" placeholder="you@company.com" required>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" id="phone" placeholder="+880 XXX-XXXXXXX" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Company Size *</label>
+                        <select id="companySize" required>
+                            <option value="">Select size</option>
+                            <option value="50-200">50-200 employees</option>
+                            <option value="200-500">200-500 employees</option>
+                            <option value="500-1000">500-1000 employees</option>
+                            <option value="1000+">1000+ employees</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Industry *</label>
+                    <select id="industry" required>
+                        <option value="">Select your industry</option>
+                        <option value="retail">Retail & E-commerce</option>
+                        <option value="restaurant">Restaurant & Food Service</option>
+                        <option value="hospitality">Hospitality & Tourism</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="finance">Finance & Banking</option>
+                        <option value="telecom">Telecommunications</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="checkbox-group">
+                    <label>What are you interested in? (Select all that apply)</label>
+                    <div class="checkbox-options">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="feature1" value="unlimited">
+                            <label for="feature1">Unlimited reviews</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="feature2" value="api">
+                            <label for="feature2">API access</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="feature3" value="custom-ai">
+                            <label for="feature3">Custom AI training</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="feature4" value="multi-user">
+                            <label for="feature4">Multiple users</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="feature5" value="support">
+                            <label for="feature5">Dedicated support</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="feature6" value="integration">
+                            <label for="feature6">Custom integration</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Tell us about your needs</label>
+                    <textarea id="message" placeholder="What challenges are you facing with customer feedback? How many reviews do you process monthly? Any specific requirements?"></textarea>
+                </div>
+
+                <button class="submit-button" onclick="submitRequest()">Request Consultation</button>
+
+                <div class="contact-info">
+                    <h3>Or Contact Us Directly</h3>
+                    <div class="contact-detail email">enterprise@echotrace.com</div>
+                    <div class="contact-detail phone">+880 1XXX-XXXXXX</div>
+                    <div class="contact-detail time">Monday - Friday, 9 AM - 6 PM</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonial -->
+        <div class="testimonial">
+            <div class="testimonial-text">
+                "EchoTrace's Enterprise solution transformed how we handle customer feedback across our 50+ locations. 
+                The custom AI model understands our customers' Banglish perfectly, and the insights have directly 
+                improved our service quality. The ROI was evident within the first quarter."
+            </div>
+            <div class="testimonial-author">Anika Rahman</div>
+            <div class="testimonial-position">Head of Operations, Foodpanda Bangladesh</div>
+        </div>
+    </div>
+
+    <script>
+        function submitRequest() {
+            const companyName = document.getElementById('companyName').value;
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const companySize = document.getElementById('companySize').value;
+            const industry = document.getElementById('industry').value;
+
+            if (!companyName || !firstName || !lastName || !email || !phone || !companySize || !industry) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            if (!email.includes('@')) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            // Collect selected features
+            const features = [];
+            for (let i = 1; i <= 6; i++) {
+                const checkbox = document.getElementById(`feature${i}`);
+                if (checkbox.checked) {
+                    features.push(checkbox.nextElementSibling.textContent);
+                }
+            }
+
+            const message = document.getElementById('message').value;
+
+            alert(`Thank you, ${firstName}! 🎉\n\nWe've received your Enterprise consultation request.\n\nCompany: ${companyName}\nIndustry: ${industry}\nSize: ${companySize}\n\nOur enterprise team will contact you within 24 hours at ${email} to schedule a personalized demo and discuss your custom solution.\n\nWhat's Next:\n✓ Personalized demo of Enterprise features\n✓ Custom pricing based on your needs\n✓ Implementation timeline discussion\n✓ Technical requirements review`);
+        }
+
+        function goBack() {
+            alert('Redirecting to pricing page...');
+        }
+    </script>
+</body>
+</html>
