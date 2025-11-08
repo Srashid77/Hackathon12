@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoTrace Pro Plan - Get Started</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 30px;
+            font-size: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+        }
+
+        .back-button::before {
+            content: "←";
+            margin-right: 8px;
+            font-size: 20px;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .plan-details {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 40px;
+        }
+
+        .plan-header {
+            margin-bottom: 40px;
+        }
+
+        .plan-badge {
+            background: rgba(255, 215, 0, 0.9);
+            color: #333;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .plan-title {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .plan-price {
+            font-size: 52px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .plan-price span {
+            font-size: 24px;
+            font-weight: 400;
+        }
+
+        .plan-description {
+            font-size: 18px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-top: 40px;
+        }
+
+        .features-list li {
+            padding: 15px 0;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .features-list li:before {
+            content: "✓";
+            background: rgba(255, 215, 0, 0.9);
+            color: #333;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .signup-section {
+            padding: 50px 40px;
+        }
+
+        .signup-header {
+            margin-bottom: 30px;
+        }
+
+        .signup-header h2 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .signup-header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .payment-methods {
+            margin: 30px 0;
+        }
+
+        .payment-methods h3 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .payment-options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .payment-option {
+            flex: 1;
+            min-width: 120px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-option:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+
+        .payment-option.selected {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+
+        .payment-option img {
+            height: 30px;
+            margin-bottom: 8px;
+        }
+
+        .payment-option span {
+            display: block;
+            font-size: 14px;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .order-summary {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .order-summary h3 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            color: #666;
+        }
+
+        .summary-row.total {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            padding-top: 12px;
+            border-top: 2px solid #e0e0e0;
+            margin-top: 15px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .security-note {
+            text-align: center;
+            margin-top: 20px;
+            color: #999;
+            font-size: 13px;
+        }
+
+        .security-note::before {
+            content: "🔒";
+            margin-right: 5px;
+        }
+
+        @media (max-width: 968px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .plan-details {
+                padding: 40px 30px;
+            }
+
+            .signup-section {
+                padding: 40px 30px;
+            }
+
+            .input-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="planning.html" class="back-button">Back to Pricing</a>
+
+        <div class="main-content">
+            <!-- Plan Details Section -->
+            <div class="plan-details">
+                <div class="plan-header">
+                    <div class="plan-badge">Most Popular</div>
+                    <h1 class="plan-title">Pro Plan</h1>
+                    <div class="plan-price">৳2,500<span>/month</span></div>
+                    <p class="plan-description">
+                        Perfect for growing businesses that want to stay ahead of customer feedback and trends.
+                    </p>
+                </div>
+
+                <ul class="features-list">
+                    <li>Up to 2,500 reviews analyzed per month</li>
+                    <li>All platforms included (Facebook, Instagram, Google Reviews)</li>
+                    <li>Advanced Banglish AI understanding</li>
+                    <li>Real-time alerts for negative reviews</li>
+                    <li>Trend detection and insights</li>
+                    <li>Export detailed reports (PDF/Excel)</li>
+                    <li>Priority customer support</li>
+                    <li>Custom sentiment categories</li>
+                    <li>Monthly performance reports</li>
+                    <li>Cancel anytime, no commitment</li>
+                </ul>
+            </div>
+
+            <!-- Signup Section -->
+            <div class="signup-section">
+                <div class="signup-header">
+                    <h2>Create Your Account</h2>
+                    <p>Start your 14-day free trial today</p>
+                </div>
+
+                <div class="input-group">
+                    <label>Business Name *</label>
+                    <input type="text" id="businessName" placeholder="Enter your business name" required>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>First Name *</label>
+                        <input type="text" id="firstName" placeholder="John" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Last Name *</label>
+                        <input type="text" id="lastName" placeholder="Doe" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Email Address *</label>
+                    <input type="email" id="email" placeholder="you@yourbusiness.com" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" id="phone" placeholder="+880 XXX-XXXXXXX" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Business Category *</label>
+                    <select id="category" required>
+                        <option value="">Select your business type</option>
+                        <option value="restaurant">Restaurant/Food Service</option>
+                        <option value="salon">Salon/Beauty</option>
+                        <option value="ecommerce">F-commerce/E-commerce</option>
+                        <option value="retail">Retail Store</option>
+                        <option value="fashion">Fashion/Clothing</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="payment-methods">
+                    <h3>Payment Method</h3>
+                    <div class="payment-options">
+                        <div class="payment-option selected" onclick="selectPayment(this)">
+                            <span>💳</span>
+                            <span>Card</span>
+                        </div>
+                        <div class="payment-option" onclick="selectPayment(this)">
+                            <span>📱</span>
+                            <span>bKash</span>
+                        </div>
+                        <div class="payment-option" onclick="selectPayment(this)">
+                            <span>📱</span>
+                            <span>Nagad</span>
+                        </div>
+                        <div class="payment-option" onclick="selectPayment(this)">
+                            <span>🏦</span>
+                            <span>Bank</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div class="summary-row">
+                        <span>Pro Plan (Monthly)</span>
+                        <span>৳2,500</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>14-Day Free Trial</span>
+                        <span style="color: #22c55e; font-weight: 600;">-৳2,500</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Due Today</span>
+                        <span>৳0</span>
+                    </div>
+                </div>
+
+                <button class="submit-button" onclick="submitSignup()">Start Free Trial</button>
+
+                <div class="security-note">
+                    Your payment information is secure and encrypted. You won't be charged until after your free trial ends.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectPayment(element) {
+            const options = document.querySelectorAll('.payment-option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+
+        function submitSignup() {
+            const businessName = document.getElementById('businessName').value;
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const category = document.getElementById('category').value;
+
+            if (!businessName || !firstName || !lastName || !email || !phone || !category) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            if (!email.includes('@')) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            alert(`Welcome to EchoTrace, ${firstName}! 🎉\n\nYour 14-day free trial has started.\n\nWe've sent a confirmation email to ${email} with next steps to connect your social media accounts.\n\nBusiness: ${businessName}\nCategory: ${category}`);
+        }
+
+        function goBack() {
+            alert('Redirecting to pricing page...');
+        }
+    </script>
+</body>
+</html>
