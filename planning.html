@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoTrace - Pricing Plans</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            color: white;
+        }
+
+        header h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 20px;
+            opacity: 0.95;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.08) translateY(-10px);
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .plan-name {
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .pricing-card.featured .plan-name {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .price {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .price-period {
+            font-size: 18px;
+            opacity: 0.7;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .features li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+        }
+
+        .pricing-card.featured .features li {
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .features li:before {
+            content: "✓";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 12px;
+            font-size: 20px;
+        }
+
+        .pricing-card.featured .features li:before {
+            color: #ffd700;
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .pricing-card:not(.featured) .cta-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .pricing-card:not(.featured) .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .pricing-card.featured .cta-button {
+            background: white;
+            color: #667eea;
+        }
+
+        .pricing-card.featured .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: #ffd700;
+            color: #333;
+            padding: 8px 40px;
+            transform: rotate(45deg);
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-cta {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-cta h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .contact-cta p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        .contact-button {
+            display: inline-block;
+            padding: 16px 48px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            min-width: 200px;
+        }
+
+        .contact-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .back-button {
+            display: inline-block;
+            text-decoration: none;
+            color: #667eea;
+            background: white;
+            padding: 16px 48px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            min-width: 200px;
+        }
+
+        .back-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 36px;
+            }
+
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .pricing-card.featured:hover {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>EchoTrace</h1>
+            <p>Choose a Demo Plan to Explore</p>
+        </header>
+
+        <div class="pricing-cards">
+            <!-- Starter Plan -->
+            <div class="pricing-card">
+                <div class="card-header">
+                    <div class="plan-name">Starter</div>
+                    <div class="price">Free</div>
+                    <div class="price-period">Forever</div>
+                </div>
+                <ul class="features">
+                    <li>Up to 500 reviews/month</li>
+                    <li>2 social platforms</li>
+                    <li>Basic sentiment analysis</li>
+                    <li>Basic Banglish AI</li>
+                    <li>Basic Export reports (PDF/Excel)</li>
+                </ul>              
+                <button class="cta-button" onclick="window.location.href='dash.html'">Get Started</button>
+            </div>
+
+            <!-- Pro Plan -->
+            <div class="pricing-card featured">
+                <div class="popular-badge">Most Popular</div>
+                <div class="card-header">
+                    <div class="plan-name">Pro Plan</div>
+                    <div class="price">৳2,500<span style="font-size: 20px; font-weight: 400;">/month</span></div>
+                    <div class="price-period">Best for growing businesses</div>
+                </div>
+                <ul class="features">
+                    <li>Up to 2,500 reviews/month</li>
+                    <li>All platforms included</li>
+                    <li>Advanced Banglish AI</li>
+                    <li>Real-time alerts</li>
+                    <li>Trend detection</li>
+                    <li>Export reports (PDF/Excel)</li>
+                    <li>Priority support</li>
+                </ul>
+                <button class="cta-button" onclick="window.location.href='proPlan.html'">Get Started</button>
+            </div>
+
+            <!-- Enterprise Plan -->
+            <div class="pricing-card">
+                <div class="card-header">
+                    <div class="plan-name">Enterprise</div>
+                    <div class="price">Custom</div>
+                    <div class="price-period">Tailored for your needs</div>
+                </div>
+                <ul class="features">
+                    <li>Unlimited reviews</li>
+                    <li>All platforms included</li>
+                    <li>Custom AI training</li>
+                    <li>Advanced Banglish AI</li>
+                    <li>Real-time alerts</li>
+                    <li>Trend detection</li>
+                    <li>API access</li>
+                    <li>Multiple users</li>
+                </ul>
+                <button class="cta-button" onclick="window.location.href='custom.html'">Get Started</button>
+            </div>
+        </div>
+
+        <div class="contact-cta">
+            <h2>Need Help Choosing?</h2>
+            <p>Our team is here to help you find the perfect plan for your business</p>
+            <div style="display: flex; gap: 20px; justify-content: center; align-items: center; flex-wrap: wrap;">
+                <a href="contact_us.html" class="contact-button">Contact Us</a>
+                <a href="javascript:void(0);" class="back-button" onclick="goBack()" style="margin-top: 0;">⬅ Back</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+     function selectPlan(plan) {
+        const messages = {
+            starter: 'Great choice! Starting with the Free Starter plan...',
+            pro: 'Excellent! Proceeding with the Pro Plan at ৳2,500/month...',
+            enterprise: 'Perfect! Our sales team will contact you shortly to discuss custom solutions.'
+        };
+        alert(messages[plan]);
+    }
+
+    function contactUs() {
+        alert('Thank you for your interest! Our team will contact you at:\n\nEmail: support@echotrace.com\nPhone: +880-XXX-XXXXXX');
+    }
+
+    function goBack() {
+        window.location.href = "index.html"; // Always go to homepage
+    }
+</script>
+
+</body>
+</html>
