@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - EchoTrace</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #1a1a1a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white !important;
+            padding: 12px 28px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Hero Section */
+        .about-hero {
+            margin-top: 80px;
+            padding: 100px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)" /></svg>');
+            opacity: 0.5;
+        }
+
+        .about-hero .container {
+            position: relative;
+        }
+
+        .about-hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .about-hero p {
+            font-size: 22px;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Story Section */
+        .our-story {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .story-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .story-text h2 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .story-text p {
+            font-size: 18px;
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .story-visual {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            padding: 60px 40px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .story-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #718096;
+        }
+
+        /* Mission Section */
+        .mission {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        }
+
+        .mission-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .mission-content h2 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: #78350f;
+        }
+
+        .mission-content p {
+            font-size: 20px;
+            color: #92400e;
+            line-height: 1.8;
+            margin-bottom: 50px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .value-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .value-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .value-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #78350f;
+        }
+
+        .value-card p {
+            font-size: 16px;
+            color: #92400e;
+            line-height: 1.6;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #718096;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 30px;
+            background: #f7fafc;
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+
+        .team-member:hover {
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transform: translateY(-5px);
+        }
+
+        .member-avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: 800;
+            color: white;
+        }
+
+        .member-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #2d3748;
+        }
+
+        .member-role {
+            font-size: 14px;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .member-bio {
+            font-size: 14px;
+            color: #718096;
+            line-height: 1.6;
+        }
+
+        /* Timeline */
+        .timeline {
+            padding: 100px 0;
+            background: #f7fafc;
+        }
+
+        .timeline-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 75px;
+            top: 60px;
+            bottom: -60px;
+            width: 2px;
+            background: #e2e8f0;
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-date {
+            text-align: right;
+            padding-top: 10px;
+        }
+
+        .year {
+            font-size: 32px;
+            font-weight: 800;
+            color: #667eea;
+        }
+
+        .month {
+            font-size: 14px;
+            color: #718096;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px #f7fafc;
+        }
+
+        .timeline-content h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+
+        .timeline-content p {
+            color: #718096;
+            line-height: 1.7;
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-cta h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .contact-cta p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+            padding: 16px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 36px;
+            }
+
+            .story-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .values-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .timeline-date {
+                text-align: left;
+            }
+
+            .timeline-item::before {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo"> EchoTrace</a>
+            <div class="nav-links">
+                <a href="index.html#features">Features</a>
+                <a href="index.html#pricing">Pricing</a>
+                <a href="about_us.html">About</a>
+                <a href="planning.html" class="cta-btn">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>Building the Future of Customer Insights</h1>
+            <p>We're on a mission to help every Bangladeshi small business understand their customers better through AI-powered sentiment analysis.</p>
+        </div>
+    </section>
+
+    <!-- Our Story -->
+    <section class="our-story">
+        <div class="container">
+            <div class="story-content">
+                <div class="story-text">
+                    <h2>Our Story</h2>
+                    <p>EchoTrace was born from a simple observation: Bangladeshi small businesses were drowning in customer feedback but had no easy way to make sense of it all.</p>
+                    <p>As entrepreneurs ourselves, we experienced the frustration of manually reading hundreds of Facebook comments and Instagram reviews written in Banglish—a unique mix of Bangla and English that global tools simply couldn't understand.</p>
+                    <p>We knew there had to be a better way. So we built EchoTrace—an AI-powered platform specifically designed for the Bangladeshi market, trained to understand how local customers actually communicate.</p>
+                    <p>Today, we're proud to help hundreds of small businesses across Bangladesh turn customer feedback into actionable insights, helping them grow and serve their customers better.</p>
+                </div>
+                <div class="story-visual">                   
+                    <h3 style="color: #2d3748; margin-bottom: 10px;">Made in Bangladesh, For Bangladesh</h3>
+                    <p style="color: #718096; margin-bottom: 30px;">Built with love in Dhaka</p>
+                    <div class="stat-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Businesses Served</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">50K+</div>
+                            <div class="stat-label">Reviews Analyzed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">95%</div>
+                            <div class="stat-label">Accuracy Rate</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Support Available</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Values -->
+    <section class="mission">
+        <div class="container">
+            <div class="mission-content">
+                <h2>Our Mission</h2>
+                <p>To empower every small business in Bangladesh with AI-powered insights that help them understand their customers, improve their services, and grow their business—all at an affordable price.</p>
+                
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">💡</div>
+                        <h3>Innovation</h3>
+                        <p>We constantly push boundaries to create cutting-edge solutions tailored for the Bangladeshi market.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🤝</div>
+                        <h3>Customer-First</h3>
+                        <p>Our customers' success is our success. We listen, adapt, and build features that truly matter.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🌟</div>
+                        <h3>Simplicity</h3>
+                        <p>Complex technology, simple experience. We make AI accessible to everyone, regardless of technical skill.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team">
+        <div class="container">
+            <h2 class="section-title">Meet Our Team</h2>
+            <p class="section-subtitle">A passionate group of entrepreneurs, engineers, and AI specialists dedicated to helping Bangladeshi businesses thrive.</p>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-avatar">AF</div>
+                    <div class="member-name">Abdullah Faiyaz</div>
+                    <div class="member-role">Co-Founder & Lead Developer</div>
+                    <p class="member-bio">BUET, CSE - Full-stack engineer passionate about AI and building scalable solutions for local businesses.</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">SM</div>
+                    <div class="member-name">Shanto Mondol</div>
+                    <div class="member-role">Co-Founder & CTO</div>
+                    <p class="member-bio">BUET, CSE - AI specialist focused on NLP and Banglish sentiment analysis architecture.</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">BI</div>
+                    <div class="member-name">A.S.M Borhanul Islam</div>
+                    <div class="member-role">Co-Founder & Product Lead</div>
+                    <p class="member-bio">IUB, CSE - Product strategist dedicated to creating intuitive experiences for small businesses.</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">ST</div>
+                    <div class="member-name">Sumaiya Tabassum</div>
+                    <div class="member-role">Co-Founder & Data Scientist</div>
+                    <p class="member-bio">IUB, CSE - ML expert specializing in multilingual data analysis and Bangla language processing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="timeline">
+        <div class="container">
+            <h2 class="section-title">Our Journey</h2>
+            <p class="section-subtitle">From idea to impact—here's how we've grown</p>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-date">
+                        <div class="year">2023</div>
+                        <div class="month">January</div>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>The Idea is Born</h3>
+                        <p>After struggling with customer feedback management in our own business, we decided to build a solution specifically for Bangladeshi entrepreneurs.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">
+                        <div class="year">2023</div>
+                        <div class="month">June</div>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Beta Launch</h3>
+                        <p>Launched beta with 20 small businesses in Dhaka. Started training our AI on thousands of Banglish reviews.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">
+                        <div class="year">2024</div>
+                        <div class="month">March</div>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Official Launch</h3>
+                        <p>Officially launched EchoTrace to the public. Within 3 months, 200+ businesses signed up.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">
+                        <div class="year">2024</div>
+                        <div class="month">September</div>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Major Milestone</h3>
+                        <p>Reached 500+ businesses and analyzed over 50,000 customer reviews. Achieved 95% accuracy in Banglish sentiment detection.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">
+                        <div class="year">2025</div>
+                        <div class="month">January</div>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Looking Ahead</h3>
+                        <p>Expanding features, improving AI accuracy, and planning to serve 5,000+ businesses by end of year.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="contact-cta">
+        <div class="container">
+            <h2>Join Us on This Journey</h2>
+            <p>Whether you're a small business owner looking for better insights or want to partner with us, we'd love to hear from you.</p>
+            <a href="planning.html" class="btn-primary">Get Started Today</a>
+        </div>
+    </section>
+
+</body>
+</html>
